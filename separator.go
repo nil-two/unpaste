@@ -57,6 +57,10 @@ func NewSeparator(isSerial bool, list string) *Separator {
 }
 
 func (s *Separator) Separate(t string) []string {
+	if t == "" {
+		return []string{}
+	}
+
 	var beg, end int
 	var a []string
 	for {
