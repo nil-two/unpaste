@@ -66,6 +66,12 @@ func (s *Separator) Separate(t string) []string {
 			break
 		}
 		beg = end + len(s.delimiters[s.delimiterIndex])
+
+		if s.delimiterIndex < len(s.delimiters)-1 {
+			s.delimiterIndex++
+		} else {
+			s.delimiterIndex = 0
+		}
 	}
 	return a
 }
