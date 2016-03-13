@@ -9,6 +9,8 @@ var toDelimitersTests = []struct {
 	list       string
 	delimiters []string
 }{
+	{"", []string{""}},
+
 	{"abc", []string{"a", "b", "c"}},
 	{"\n\t ", []string{"\n", "\t", " "}},
 	{"<<--->>", []string{"<", "<", "-", "-", "-", ">", ">"}},
