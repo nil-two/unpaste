@@ -37,3 +37,11 @@ type Separator struct {
 	delimiters     []string
 	delimiterIndex int
 }
+
+func NewSeparator(isSerial bool, list string) *Separator {
+	return &Separator{
+		isSerial:       isSerial,
+		delimiters:     toDelimiters(list),
+		delimiterIndex: 0,
+	}
+}
