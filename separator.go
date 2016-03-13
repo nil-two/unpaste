@@ -31,3 +31,9 @@ func toDelimiters(list string) []string {
 	}
 	return a
 }
+
+type Separator struct {
+	isSerial       bool
+	delimiters     []string
+	delimiterIndex int
+}
