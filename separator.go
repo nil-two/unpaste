@@ -5,5 +5,8 @@ func toDelimiters(list string) []string {
 	for _, ch := range list {
 		a = append(a, string(ch))
 	}
+	if len(a) == 0 {
+		return []string{""}
+	}
 	return a
 }
