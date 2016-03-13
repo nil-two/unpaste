@@ -79,6 +79,17 @@ var separeteTests = []struct {
 		src:  "a>bb]c)dd}e>ff]g",
 		dst:  []string{"a", "bb", "c", "dd", "e", "ff", "g"},
 	},
+
+	{
+		list: "、",
+		src:  "上、下、左、右",
+		dst:  []string{"上", "下", "左", "右"},
+	},
+	{
+		list: "］〕",
+		src:  "あああああ］あああああああ〕あああああ",
+		dst:  []string{"あああああ", "あああああああ", "あああああ"},
+	},
 }
 
 func TestSeparate(t *testing.T) {
