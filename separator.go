@@ -1,5 +1,9 @@
 package main
 
+import (
+	"strings"
+)
+
 func toDelimiters(list string) []string {
 	var isEscaping bool
 	var a []string
@@ -44,4 +48,24 @@ func NewSeparator(isSerial bool, list string) *Separator {
 		delimiters:     toDelimiters(list),
 		delimiterIndex: 0,
 	}
+}
+
+func (s *Separator) Separate(t string) []string {
+	var beg, end int
+	var a []string
+	for {
+		i := strings.Index(t[beg:], s.delimiters[s.delimiterIndex])
+		if i == -1 {
+			a = append(a, t[end+len(s.delimiters[s.delimiterIndex]):])
+			break
+		}
+		end = beg + i
+
+		a = append(a, t[beg:end])
+		if end >= len(t) {
+			break
+		}
+		beg = end + len(s.delimiters[s.delimiterIndex])
+	}
+	return a
 }
