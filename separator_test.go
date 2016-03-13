@@ -49,6 +49,17 @@ var separeteTests = []struct {
 		src:  "1,,2,,3",
 		dst:  []string{"1", "", "2", "", "3"},
 	},
+
+	{
+		list: ":.",
+		src:  "aaa:bbb.ccc:ddd.eee",
+		dst:  []string{"aaa", "bbb", "ccc", "ddd", "eee"},
+	},
+	{
+		list: ">])}",
+		src:  "a>bb]c)dd}e>ff]g",
+		dst:  []string{"a", "bb", "c", "dd", "e", "ff", "g"},
+	},
 }
 
 func TestSeparate(t *testing.T) {
