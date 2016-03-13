@@ -40,6 +40,12 @@ var separeteTests = []struct {
 	dst      []string
 }{
 	{
+		list: "",
+		src:  "abc",
+		dst:  []string{"a", "b", "c"},
+	},
+
+	{
 		list: "\t",
 		src:  "aaa\tbbb\tccc",
 		dst:  []string{"aaa", "bbb", "ccc"},
