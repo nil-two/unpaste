@@ -2,6 +2,7 @@ package main
 
 import (
 	"strings"
+	"unicode/utf8"
 )
 
 func toDelimiters(list string) []string {
@@ -34,6 +35,11 @@ func toDelimiters(list string) []string {
 		return []string{""}
 	}
 	return a
+}
+
+func sizeOfHeadRune(s string) int {
+	_, size := utf8.DecodeRuneInString(s)
+	return size
 }
 
 type Separator struct {
