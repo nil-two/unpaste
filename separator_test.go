@@ -14,6 +14,12 @@ var toDelimitersTests = []struct {
 	{"abc", []string{"a", "b", "c"}},
 	{"\n\t ", []string{"\n", "\t", " "}},
 	{"<<--->>", []string{"<", "<", "-", "-", "-", ">", ">"}},
+
+	{"\\a\\b\\c", []string{"a", "b", "c"}},
+	{"\\\\\\t\\n\\0", []string{"\\", "\t", "\n", ""}},
+	{"\\", []string{""}},
+	{"\\\\\\", []string{"\\"}},
+	{"\\\\\\\\\\", []string{"\\", "\\"}},
 }
 
 func TestToDelimiters(t *testing.T) {
