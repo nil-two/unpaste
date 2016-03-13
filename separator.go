@@ -60,18 +60,27 @@ func (s *Separator) Separate(t string) []string {
 	var beg, end int
 	var a []string
 	for {
-		i := strings.Index(t[beg:], s.delimiters[s.delimiterIndex])
-		if i == -1 {
-			a = append(a, t[end+len(s.delimiters[s.delimiterIndex]):])
-			break
+		d := s.delimiters[s.delimiterIndex]
+		if d == "" {
+			n := sizeOfHeadRune(t)
+			if n == 0 {
+				break
+			}
+			end = beg + n
+		} else {
+			i := strings.Index(t[beg:], d)
+			if i == -1 {
+				a = append(a, t[end+len(d):])
+				break
+			}
+			end = beg + i
 		}
-		end = beg + i
 
 		a = append(a, t[beg:end])
 		if end >= len(t) {
 			break
 		}
-		beg = end + len(s.delimiters[s.delimiterIndex])
+		beg = end + len(d)
 
 		if s.delimiterIndex < len(s.delimiters)-1 {
 			s.delimiterIndex++
