@@ -32,3 +32,33 @@ func TestToDelimiters(t *testing.T) {
 		}
 	}
 }
+
+var separeteTests = []struct {
+	isSerial bool
+	list     string
+	src      string
+	dst      []string
+}{
+	{
+		list: "\t",
+		src:  "aaa\tbbb\tccc",
+		dst:  []string{"aaa", "bbb", "ccc"},
+	},
+	{
+		list: ",",
+		src:  "1,,2,,3",
+		dst:  []string{"1", "", "2", "", "3"},
+	},
+}
+
+func TestSeparate(t *testing.T) {
+	for _, test := range separeteTests {
+		s := NewSeparator(test.isSerial, test.list)
+		expect := test.dst
+		actual := s.Separate(test.src)
+		if !reflect.DeepEqual(actual, expect) {
+			t.Errorf("%q.Separate(%q) = %q, want %q",
+				s, test.src, actual, expect)
+		}
+	}
+}
