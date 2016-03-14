@@ -43,14 +43,12 @@ func sizeOfHeadRune(s string) int {
 }
 
 type Separator struct {
-	delimiters     []string
-	delimiterIndex int
+	delimiters []string
 }
 
 func NewSeparator(list string) *Separator {
 	return &Separator{
-		delimiters:     toDelimiters(list),
-		delimiterIndex: 0,
+		delimiters: toDelimiters(list),
 	}
 }
 
@@ -59,14 +57,15 @@ func (s *Separator) Separate(t string) []string {
 		return []string{}
 	}
 
+	var delimiterIndex int
 	var beg, end int
 	var a []string
 	for {
-		d := s.delimiters[s.delimiterIndex]
-		if s.delimiterIndex < len(s.delimiters)-1 {
-			s.delimiterIndex++
+		d := s.delimiters[delimiterIndex]
+		if delimiterIndex < len(s.delimiters)-1 {
+			delimiterIndex++
 		} else {
-			s.delimiterIndex = 0
+			delimiterIndex = 0
 		}
 
 		if d == "" {
