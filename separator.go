@@ -43,14 +43,12 @@ func sizeOfHeadRune(s string) int {
 }
 
 type Separator struct {
-	isSerial       bool
 	delimiters     []string
 	delimiterIndex int
 }
 
-func NewSeparator(isSerial bool, list string) *Separator {
+func NewSeparator(list string) *Separator {
 	return &Separator{
-		isSerial:       isSerial,
 		delimiters:     toDelimiters(list),
 		delimiterIndex: 0,
 	}

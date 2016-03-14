@@ -36,10 +36,9 @@ func TestToDelimiters(t *testing.T) {
 }
 
 var separeteTests = []struct {
-	isSerial bool
-	list     string
-	src      string
-	dst      []string
+	list string
+	src  string
+	dst  []string
 }{
 	{
 		list: "",
@@ -94,7 +93,7 @@ var separeteTests = []struct {
 
 func TestSeparate(t *testing.T) {
 	for _, test := range separeteTests {
-		s := NewSeparator(test.isSerial, test.list)
+		s := NewSeparator(test.list)
 		expect := test.dst
 		actual := s.Separate(test.src)
 		if !reflect.DeepEqual(actual, expect) {
@@ -105,9 +104,8 @@ func TestSeparate(t *testing.T) {
 }
 
 func TestSeparateTwice(t *testing.T) {
-	isSerial := false
 	list := ",."
-	s := NewSeparator(isSerial, list)
+	s := NewSeparator(list)
 
 	var src string
 	var expect, actual []string
