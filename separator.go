@@ -65,6 +65,12 @@ func (s *Separator) Separate(t string) []string {
 	var a []string
 	for {
 		d := s.delimiters[s.delimiterIndex]
+		if s.delimiterIndex < len(s.delimiters)-1 {
+			s.delimiterIndex++
+		} else {
+			s.delimiterIndex = 0
+		}
+
 		if d == "" {
 			n := sizeOfHeadRune(t)
 			if n == 0 {
@@ -85,12 +91,6 @@ func (s *Separator) Separate(t string) []string {
 			break
 		}
 		beg = end + len(d)
-
-		if s.delimiterIndex < len(s.delimiters)-1 {
-			s.delimiterIndex++
-		} else {
-			s.delimiterIndex = 0
-		}
 	}
 	return a
 }
