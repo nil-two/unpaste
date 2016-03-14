@@ -3,6 +3,31 @@ unpaste
 
 Separate corresponding or subsequent lines of files.
 
+```
+$ echo "$PATH"
+/bin:/usr/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/bin
+
+$ echo "$PATH" | unpaste -sd: | awk '!a[$0]++' | paste -sd:
+/bin:/usr/bin:/usr/local/bin
+```
+
+```
+$ seq 3 | awk '{OFS="\t"; print $0, $0^2, $0^3}' | unpaste a b -
+1
+8
+27
+
+$ cat a
+1
+2
+3
+
+$ cat b
+1
+4
+9
+```
+
 Usage
 -----
 
