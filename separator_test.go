@@ -103,3 +103,28 @@ func TestSeparate(t *testing.T) {
 		}
 	}
 }
+
+func TestSeparateTwice(t *testing.T) {
+	isSerial := false
+	list := ",."
+	s := NewSeparator(isSerial, list)
+
+	var src string
+	var expect, actual []string
+
+	src = "aaa,bbb"
+	expect = []string{"aaa", "bbb"}
+	actual = s.Separate(src)
+	if !reflect.DeepEqual(actual, expect) {
+		t.Errorf("[1] %q.Separate(%q) = %q, want %q",
+			s, src, actual, expect)
+	}
+
+	src = "ccc,ddd"
+	expect = []string{"ccc", "ddd"}
+	actual = s.Separate(src)
+	if !reflect.DeepEqual(actual, expect) {
+		t.Errorf("[2] %q.Separate(%q) = %q, want %q",
+			s, src, actual, expect)
+	}
+}
