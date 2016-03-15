@@ -1,6 +1,8 @@
 unpaste
 =======
 
+[![Build Status](https://travis-ci.org/kusabashira/unpaste.svg?branch=master)](https://travis-ci.org/kusabashira/unpaste)
+
 Separate corresponding or subsequent lines of files.
 
 ```
