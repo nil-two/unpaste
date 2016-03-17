@@ -77,7 +77,7 @@ func (s *Separator) Separate(t string) []string {
 		} else {
 			i := strings.Index(t[beg:], d)
 			if i == -1 {
-				a = append(a, t[end+len(d):])
+				a = append(a, t[beg:])
 				break
 			}
 			end = beg + i
