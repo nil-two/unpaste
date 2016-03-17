@@ -11,9 +11,8 @@ $ echo "$PATH"
 
 $ echo "$PATH" | unpaste -sd: | awk '!a[$0]++' | paste -sd:
 /bin:/usr/bin:/usr/local/bin
-```
 
-```
+
 $ seq 3 | awk '{OFS="\t"; print $0, $0^2, $0^3}' | unpaste a b -
 1
 8
