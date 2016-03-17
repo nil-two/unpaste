@@ -91,6 +91,17 @@ var separeteTests = []struct {
 	},
 
 	{
+		list: "#",
+		src:  "aaa#bbb#",
+		dst:  []string{"aaa", "bbb"},
+	},
+	{
+		list: "#\\0",
+		src:  "aaa#bbb#ccc#",
+		dst:  []string{"aaa", "b", "bb", "c", "cc"},
+	},
+
+	{
 		list: "、",
 		src:  "上、下、左、右",
 		dst:  []string{"上", "下", "左", "右"},
