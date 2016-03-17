@@ -82,12 +82,12 @@ func (s *Separator) Separate(t string) []string {
 			}
 			end = beg + i
 		}
-
 		a = append(a, t[beg:end])
-		if end >= len(t) {
+
+		beg = end + len(d)
+		if beg >= len(t) {
 			break
 		}
-		beg = end + len(d)
 	}
 	return a
 }
