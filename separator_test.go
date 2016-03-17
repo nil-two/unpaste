@@ -80,6 +80,17 @@ var separeteTests = []struct {
 	},
 
 	{
+		list: "#\\0",
+		src:  "aaa#bbb#c",
+		dst:  []string{"aaa", "b", "bb", "c"},
+	},
+	{
+		list: "#\\0",
+		src:  "aaa#bbb#ccc",
+		dst:  []string{"aaa", "b", "bb", "c", "cc"},
+	},
+
+	{
 		list: "、",
 		src:  "上、下、左、右",
 		dst:  []string{"上", "下", "左", "右"},
