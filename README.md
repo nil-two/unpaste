@@ -144,6 +144,23 @@ d
 e
 ```
 
+Other specification
+-------------------
+
+#### `-` in `[FILE]...`
+
+`-` in `[FILE]...` is interpreted as `/dev/stdout`.
+
+```
+$ printf "1\t2\t3\n4\t5\t6\n" | unpaste -
+1
+4
+
+$ printf "1\t2\t3\n4\t5\t6\n" | unpaste /dev/null /dev/null -
+3
+6
+```
+
 License
 -------
 
