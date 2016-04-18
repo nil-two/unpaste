@@ -105,6 +105,10 @@ func _main() int {
 			}
 		}
 	}
+	if err := b.Err(); err != nil {
+		printErr(err)
+		return 1
+	}
 	return 0
 }
 
