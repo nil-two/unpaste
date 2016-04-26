@@ -62,13 +62,13 @@ func _main() int {
 		return 0
 	}
 
-	var writers []io.Writer
+	var ws []io.Writer
 	if flagset.NArg() < 1 {
-		writers = append(writers, os.Stdout)
+		ws = append(ws, os.Stdout)
 	} else {
 		for _, name := range flagset.Args() {
 			if name == "-" {
-				writers = append(writers, os.Stdout)
+				ws = append(ws, os.Stdout)
 				continue
 			}
 
@@ -80,27 +80,27 @@ func _main() int {
 			}
 			defer f.Close()
 
-			writers = append(writers, f)
+			ws = append(ws, f)
 		}
 	}
 
 	s := NewSeparator(*delimiters)
 	b := bufio.NewScanner(os.Stdin)
 	if *isSerial {
-		for i := 0; i < len(writers) && b.Scan(); i++ {
+		for i := 0; i < len(ws) && b.Scan(); i++ {
 			a := s.Separate(b.Text())
 			for _, line := range a {
-				fmt.Fprintln(writers[i], line)
+				fmt.Fprintln(ws[i], line)
 			}
 		}
 	} else {
 		for b.Scan() {
 			a := s.Separate(b.Text())
-			for i := 0; i < len(writers); i++ {
+			for i := 0; i < len(ws); i++ {
 				if i < len(a) {
-					fmt.Fprintln(writers[i], a[i])
+					fmt.Fprintln(ws[i], a[i])
 				} else {
-					fmt.Fprintln(writers[i], "")
+					fmt.Fprintln(ws[i], "")
 				}
 			}
 		}
