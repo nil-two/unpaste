@@ -36,6 +36,8 @@ Usage
 $ unpaste [OPTION]... [FILE]...
 Separate corresponding or subsequent lines of files.
 
+With no FILE, or when FILE is -, output to standard output.
+
 Options:
   -d, --delimiters=LIST   reuse characters from LIST instead of TABs
   -s, --serial            unpaste one file at a time instead of in parallel
