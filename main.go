@@ -48,6 +48,30 @@ func guideToHelp() {
 	fmt.Fprintf(os.Stderr, "Try '%s --help' for more information.\n", name)
 }
 
+func do(ws []io.Writer, s *Separator, isSerial bool) error {
+	b := bufio.NewScanner(os.Stdin)
+	if isSerial {
+		for i := 0; i < len(ws) && b.Scan(); i++ {
+			a := s.Separate(b.Text())
+			for _, line := range a {
+				fmt.Fprintln(ws[i], line)
+			}
+		}
+	} else {
+		for b.Scan() {
+			a := s.Separate(b.Text())
+			for i := 0; i < len(ws); i++ {
+				if i < len(a) {
+					fmt.Fprintln(ws[i], a[i])
+				} else {
+					fmt.Fprintln(ws[i], "")
+				}
+			}
+		}
+	}
+	return b.Err()
+}
+
 func _main() int {
 	flagset.SetOutput(ioutil.Discard)
 	if err := flagset.Parse(os.Args[1:]); err != nil {
@@ -87,27 +111,7 @@ func _main() int {
 	}
 
 	s := NewSeparator(*delimiters)
-	b := bufio.NewScanner(os.Stdin)
-	if *isSerial {
-		for i := 0; i < len(ws) && b.Scan(); i++ {
-			a := s.Separate(b.Text())
-			for _, line := range a {
-				fmt.Fprintln(ws[i], line)
-			}
-		}
-	} else {
-		for b.Scan() {
-			a := s.Separate(b.Text())
-			for i := 0; i < len(ws); i++ {
-				if i < len(a) {
-					fmt.Fprintln(ws[i], a[i])
-				} else {
-					fmt.Fprintln(ws[i], "")
-				}
-			}
-		}
-	}
-	if err := b.Err(); err != nil {
+	if err := do(ws, s, *isSerial); err != nil {
 		printErr(err)
 		return 1
 	}
