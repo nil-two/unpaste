@@ -54,7 +54,7 @@ Display a help message.
 
 ### --version
 
-Display the version of unpaste.
+Output the version of unpaste.
 
 ### -d, --delimiters=LIST
 
