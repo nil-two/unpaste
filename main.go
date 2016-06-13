@@ -11,10 +11,10 @@ import (
 )
 
 var (
-	name    = "unpaste"
+	cmdName = "unpaste"
 	version = "0.1.0"
 
-	flagset    = pflag.NewFlagSet(name, pflag.ContinueOnError)
+	flagset    = pflag.NewFlagSet(cmdName, pflag.ContinueOnError)
 	delimiters = flagset.StringP("delimiters", "d", "\t", "")
 	isSerial   = flagset.BoolP("serial", "s", false, "")
 	isHelp     = flagset.BoolP("help", "h", false, "")
@@ -33,7 +33,7 @@ Options:
   -s, --serial            unpaste one file at a time instead of in parallel
       --help              display this help and exit
       --version           display version information and exit
-`[1:], name)
+`[1:], cmdName)
 }
 
 func printVersion() {
@@ -41,11 +41,11 @@ func printVersion() {
 }
 
 func printErr(err interface{}) {
-	fmt.Fprintf(os.Stderr, "%s: %s\n", name, err)
+	fmt.Fprintf(os.Stderr, "%s: %s\n", cmdName, err)
 }
 
 func guideToHelp() {
-	fmt.Fprintf(os.Stderr, "Try '%s --help' for more information.\n", name)
+	fmt.Fprintf(os.Stderr, "Try '%s --help' for more information.\n", cmdName)
 }
 
 func do(ws []io.Writer, s *Separator, isSerial bool) error {
