@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	cmdName = "unpaste"
-	version = "0.1.0"
+	cmdName    = "unpaste"
+	cmdVersion = "0.1.0"
 
 	flagset    = pflag.NewFlagSet(cmdName, pflag.ContinueOnError)
 	delimiters = flagset.StringP("delimiters", "d", "\t", "")
@@ -37,7 +37,7 @@ Options:
 }
 
 func printVersion() {
-	fmt.Fprintf(os.Stderr, "%s\n", version)
+	fmt.Fprintf(os.Stderr, "%s\n", cmdVersion)
 }
 
 func printErr(err interface{}) {
