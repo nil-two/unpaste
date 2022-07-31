@@ -1,8 +1,6 @@
 unpaste
 =======
 
-[![Build Status](https://travis-ci.org/kusabashira/unpaste.svg?branch=master)](https://travis-ci.org/kusabashira/unpaste)
-
 Separate corresponding or subsequent lines of files.
 
 ```
@@ -173,4 +171,4 @@ MIT License
 Author
 ------
 
-kusabashira <kusabashira227@gmail.com>
+nil2 <nil2@nil2.org>
